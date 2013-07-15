@@ -17,7 +17,8 @@ This was inspired by cocoapods-xcode-plugin (https://github.com/kattrali/cocoapo
 
 # Installation
 
-Clone and build, then restart xcode.
+* Clone and build, then restart xcode.
+* Or place AGVtool.xcplugin file under ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins, then restart xcode
 
 # How agvtool
 
