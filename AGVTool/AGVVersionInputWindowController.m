@@ -9,8 +9,8 @@
 #import "AGVVersionInputWindowController.h"
 
 @interface AGVVersionInputWindowController ()
-@property (nonatomic, assign) IBOutlet NSTextField *majorVersionField;
-@property (nonatomic, assign) IBOutlet NSTextField *minorVersionField;
+@property (nonatomic, strong) IBOutlet NSTextField *majorVersionField;
+@property (nonatomic, strong) IBOutlet NSTextField *minorVersionField;
 @property (nonatomic, assign) NSInteger majorVersion;
 @property (nonatomic, assign) NSInteger minorVersion;
 @property (nonatomic, copy) void (^completionHandler)(NSInteger, NSInteger);

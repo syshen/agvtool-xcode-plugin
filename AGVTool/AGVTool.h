@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 syshen. All rights reserved.
 //
 
-#import <AppKit/AppKit.h>
+@import AppKit;
 
 @interface AGVTool : NSObject
 

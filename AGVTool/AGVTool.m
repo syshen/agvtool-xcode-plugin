@@ -14,11 +14,8 @@
 
 @interface AGVTool ()
 
-@property (nonatomic, strong) NSMenuItem *bumpItem;
-@property (nonatomic, strong) NSMenuItem *whatVerItem;
-@property (nonatomic, strong) NSMenuItem *createVerItem;
-@property (nonatomic, strong) NSMenuItem *createMarketingVerItem;
-@property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic) NSMenuItem *bumpItem,*whatVerItem,*createVerItem,*createMarketingVerItem;
+@property (nonatomic) NSBundle *bundle;
 
 @end
 
@@ -32,11 +29,10 @@
   });
 }
 
-- (id)initWithBundle:(NSBundle *)plugin {
-  if (self = [super init]) {
-    _bundle = plugin;
-    [self addMenuItems];
-  }
+- initWithBundle:(NSBundle *)plugin {
+  if (!(self = [super init])) return nil;
+  _bundle = plugin;
+  [self addMenuItems];
   return self;
 }
 
@@ -75,14 +71,6 @@
   }
 }
 
-- (void)dealloc {
-  [super dealloc];
-  [self.bumpItem release];
-  [self.whatVerItem release];
-  [self.createVerItem release];
-  [self.createMarketingVerItem release];
-  
-}
 - (void)agvtoolBump {
  
   [AGVShellHandler runShellCommand:@"/usr/bin/agvtool"
@@ -251,12 +239,11 @@
 
 - (void)alertWithMessage:(NSString*)message {
   
-  NSAlert *alert = [NSAlert alertWithMessageText:message
-                                   defaultButton:@"OK"
-                                 alternateButton:nil
-                                     otherButton:nil
-                       informativeTextWithFormat:@""];
-  [alert runModal];
+  [[NSAlert alertWithMessageText:message
+                   defaultButton:@"OK"
+                 alternateButton:nil
+                     otherButton:nil
+       informativeTextWithFormat:@""]runModal];
 
 }
 

@@ -11,12 +11,13 @@
 @implementation AGVShellHandler
 
 + (void)runShellCommand:(NSString *)command withArgs:(NSArray *)args directory:(NSString *)directory completion:(void(^)(NSTask *t, NSString *standardOutput, NSString *standardErr))completion {
-  __block NSMutableData *taskOutput = [NSMutableData new];
-  __block NSMutableData *taskError  = [NSMutableData new];
+
+  NSMutableData * taskOutput = NSMutableData.new,
+                 * taskError = NSMutableData.new;
   
   NSTask *task = [NSTask new];
   
-//  NSLog(@"command directory: %@", directory);
+  //  NSLog(@"command directory: %@", directory);
   task.currentDirectoryPath = directory;
   task.launchPath = command;
   task.arguments  = args;
