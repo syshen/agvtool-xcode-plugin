@@ -11,23 +11,22 @@
 @implementation AGVWorkspaceManager
 
 + (NSString *)currentWorkspaceDirectoryPath {
-  id workspace = [self workspaceForKeyWindow];
-  NSString *workspacePath = [[workspace valueForKey:@"representingFilePath"] valueForKey:@"_pathString"];
-  return [workspacePath stringByDeletingLastPathComponent];
+
+  return [[[self.workspaceForKeyWindow valueForKey:@"representingFilePath"]
+                                       valueForKey:@"_pathString"] stringByDeletingLastPathComponent];
 }
 
-+ (id)workspaceForKeyWindow {
-  NSArray *workspaceWindowControllers = [NSClassFromString(@"IDEWorkspaceWindowController") valueForKey:@"workspaceWindowControllers"];
-  
-  for (id controller in workspaceWindowControllers) {
-    if ([[controller valueForKey:@"window"] valueForKey:@"isKeyWindow"]) {
-      NSLog(@"%@", controller);
-      return [controller valueForKey:@"_workspace"];
-      
-    }
++ workspaceForKeyWindow {
+
+                        /* workspaceWindowControllers */
+  for (id controller in [NSClassFromString(@"IDEWorkspaceWindowController")
+                                 valueForKey:@"workspaceWindowControllers"]) {
+
+    if (![[[controller valueForKey:@"window"] valueForKey:@"isKeyWindow"] boolValue]) continue;
+    NSLog(@"%@", controller);
+    return [controller valueForKey:@"_workspace"];
   }
   return nil;
 }
-
 
 @end

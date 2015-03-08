@@ -29,7 +29,6 @@
 		8029C2661791766900343B0B /* AGVWorkspaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGVWorkspaceManager.m; sourceTree = "<group>"; };
 		80FE2F8B179169FD00D279A0 /* AGVTool.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AGVTool.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		80FE2F96179169FD00D279A0 /* AGVTool-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AGVTool-Info.plist"; path = "AGVTool/AGVTool-Info.plist"; sourceTree = "<group>"; };
-		80FE2FA017916C4300D279A0 /* AGVTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGVTool.h; path = AGVTool/AGVTool.h; sourceTree = "<group>"; };
 		80FE2FA117916C4300D279A0 /* AGVTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGVTool.m; path = AGVTool/AGVTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +74,6 @@
 			children = (
 				808044BD17921CD9002FE345 /* UI */,
 				8029C261179175A600343B0B /* Helpers */,
-				80FE2FA017916C4300D279A0 /* AGVTool.h */,
 				80FE2FA117916C4300D279A0 /* AGVTool.m */,
 				80FE2F96179169FD00D279A0 /* AGVTool-Info.plist */,
 				80FE2F8C179169FD00D279A0 /* Products */,

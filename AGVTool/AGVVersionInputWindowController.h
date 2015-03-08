@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef void (^MajMinCompletion)(NSInteger newMajor, NSInteger newMinor);
+
 @interface AGVVersionInputWindowController : NSWindowController
 
-- (id) initWithMajorVersion:(NSInteger)major minorVersion:(NSInteger)minor completionHandler:(void (^)(NSInteger newMajor, NSInteger newMinor))completionHandler;
+- initWithMajorVersion:(NSInteger)maj minorVersion:(NSInteger)min completionHandler:(MajMinCompletion)comp;
 
 @end

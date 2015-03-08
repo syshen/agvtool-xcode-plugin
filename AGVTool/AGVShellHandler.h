@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^TaskCompletion)(NSTask *t, NSString *stdOut, NSString *stdErr);
+
 @interface AGVShellHandler : NSObject
-+ (void)runShellCommand:(NSString *)command withArgs:(NSArray *)args directory:(NSString *)directory completion:(void(^)(NSTask *t, NSString *standardOutput, NSString *standardErr))completion;
+
++ (void) runShellCommand:(NSString*)cmd withArgs:(NSArray*)args
+               directory:(NSString*)dir completion:(TaskCompletion)comp;
 @end

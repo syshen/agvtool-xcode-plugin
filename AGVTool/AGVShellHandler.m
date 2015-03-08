@@ -10,38 +10,39 @@
 
 @implementation AGVShellHandler
 
-+ (void)runShellCommand:(NSString *)command withArgs:(NSArray *)args directory:(NSString *)directory completion:(void(^)(NSTask *t, NSString *standardOutput, NSString *standardErr))completion {
++ (void) runShellCommand:(NSString*)cmd withArgs:(NSArray*)args
+               directory:(NSString*)dir completion:(TaskCompletion)comp {
 
   NSMutableData * taskOutput = NSMutableData.new,
                  * taskError = NSMutableData.new;
   
-  NSTask *task = [NSTask new];
+  NSTask *task = NSTask.new;
   
   //  NSLog(@"command directory: %@", directory);
-  task.currentDirectoryPath = directory;
-  task.launchPath = command;
+  task.currentDirectoryPath = dir;
+  task.launchPath = cmd;
   task.arguments  = args;
   
-  task.standardOutput = [NSPipe pipe];
-  task.standardError  = [NSPipe pipe];
+  task.standardOutput = NSPipe.pipe;
+  task.standardError  = NSPipe.pipe;
   
-  [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-    [taskOutput appendData:[file availableData]];
-  }];
+  [task.standardOutput fileHandleForReading].readabilityHandler = ^(NSFileHandle *file) {
+    [taskOutput appendData:file.availableData];
+  };
   
-  [[task.standardError fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-    [taskError appendData:[file availableData]];
-  }];
+  [task.standardError fileHandleForReading].readabilityHandler = ^(NSFileHandle *file) {
+    [taskError appendData:file.availableData];
+  };
   
-  [task setTerminationHandler:^(NSTask *t) {
+  task.terminationHandler = ^(NSTask *t) {
     [t.standardOutput fileHandleForReading].readabilityHandler = nil;
-    [t.standardError fileHandleForReading].readabilityHandler  = nil;
-    NSString *output = [[NSString alloc] initWithData:taskOutput encoding:NSUTF8StringEncoding];
-    NSString *error = [[NSString alloc] initWithData:taskError encoding:NSUTF8StringEncoding];
+    [t.standardError  fileHandleForReading].readabilityHandler = nil;
+    NSString *output = [NSString.alloc initWithData:taskOutput encoding:NSUTF8StringEncoding],
+              *error = [NSString.alloc initWithData:taskError  encoding:NSUTF8StringEncoding];
     NSLog(@"Shell command output: %@", output);
     NSLog(@"Shell command error: %@", error);
-    if (completion) completion(t, output, error);
-  }];
+    if (comp) comp(t, output, error);
+  };
   
   @try {
     [task launch];
