@@ -10,6 +10,6 @@
 
 @interface AGVBuildInputWindowController : NSWindowController
 
-- (id) initWithVersion:(NSInteger)ver completionHandler:(void (^)(NSInteger newVer))completionHandler;
+- initWithVersion:(NSInteger)ver completionHandler:(void (^)(NSInteger newVer))completionHandler;
 
 @end
